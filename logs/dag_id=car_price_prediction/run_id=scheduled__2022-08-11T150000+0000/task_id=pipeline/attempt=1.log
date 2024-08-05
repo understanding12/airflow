@@ -1,0 +1,25 @@
+[2024-08-05T13:04:41.236+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-05T13:04:41.304+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: car_price_prediction.pipeline scheduled__2022-08-11T15:00:00+00:00 [queued]>
+[2024-08-05T13:04:41.335+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: car_price_prediction.pipeline scheduled__2022-08-11T15:00:00+00:00 [queued]>
+[2024-08-05T13:04:41.337+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-05T13:04:41.391+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): pipeline> on 2022-08-11 15:00:00+00:00
+[2024-08-05T13:04:41.406+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=1541) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-08-05T13:04:41.411+0000] {standard_task_runner.py:64} INFO - Started process 1567 to run task
+[2024-08-05T13:04:41.409+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'car_price_prediction', 'pipeline', 'scheduled__2022-08-11T15:00:00+00:00', '--job-id', '178', '--raw', '--subdir', 'DAGS_FOLDER/hw_dag.py', '--cfg-path', '/tmp/tmpoajc4y_a']
+[2024-08-05T13:04:41.413+0000] {standard_task_runner.py:91} INFO - Job 178: Subtask pipeline
+[2024-08-05T13:04:41.511+0000] {task_command.py:426} INFO - Running <TaskInstance: car_price_prediction.pipeline scheduled__2022-08-11T15:00:00+00:00 [running]> on host db70dacab446
+[2024-08-05T13:04:41.787+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='car_price_prediction' AIRFLOW_CTX_TASK_ID='pipeline' AIRFLOW_CTX_EXECUTION_DATE='2022-08-11T15:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2022-08-11T15:00:00+00:00'
+[2024-08-05T13:04:41.797+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-05T13:04:46.126+0000] {pipeline.py:115} INFO - model: LogisticRegression, acc_mean: 0.7591, acc_std: 0.0075
+[2024-08-05T13:06:07.075+0000] {pipeline.py:115} INFO - model: RandomForestClassifier, acc_mean: 0.7777, acc_std: 0.0062
+[2024-08-05T13:06:50.481+0000] {pipeline.py:115} INFO - model: SVC, acc_mean: 0.7871, acc_std: 0.0042
+[2024-08-05T13:06:50.483+0000] {pipeline.py:120} INFO - best model: SVC, accuracy: 0.7871
+[2024-08-05T13:07:01.845+0000] {pipeline.py:128} INFO - Model is saved as /opt/***//data/models/cars_pipe_202408051307.pkl
+[2024-08-05T13:07:01.852+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-08-05T13:07:01.853+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-05T13:07:01.869+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=car_price_prediction, task_id=pipeline, run_id=scheduled__2022-08-11T15:00:00+00:00, execution_date=20220811T150000, start_date=20240805T130441, end_date=20240805T130701
+[2024-08-05T13:07:01.960+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2024-08-05T13:07:01.996+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-08-05T13:07:02.010+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

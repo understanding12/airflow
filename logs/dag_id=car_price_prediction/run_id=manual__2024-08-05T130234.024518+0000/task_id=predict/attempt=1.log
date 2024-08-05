@@ -1,0 +1,41 @@
+[2024-08-05T13:06:09.304+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-05T13:06:09.406+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: car_price_prediction.predict manual__2024-08-05T13:02:34.024518+00:00 [queued]>
+[2024-08-05T13:06:09.428+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: car_price_prediction.predict manual__2024-08-05T13:02:34.024518+00:00 [queued]>
+[2024-08-05T13:06:09.430+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-05T13:06:09.535+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): predict> on 2024-08-05 13:02:34.024518+00:00
+[2024-08-05T13:06:09.550+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=1738) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-08-05T13:06:09.554+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'car_price_prediction', 'predict', 'manual__2024-08-05T13:02:34.024518+00:00', '--job-id', '192', '--raw', '--subdir', 'DAGS_FOLDER/hw_dag.py', '--cfg-path', '/tmp/tmppvpd3y9i']
+[2024-08-05T13:06:09.565+0000] {standard_task_runner.py:91} INFO - Job 192: Subtask predict
+[2024-08-05T13:06:09.560+0000] {standard_task_runner.py:64} INFO - Started process 1790 to run task
+[2024-08-05T13:06:09.761+0000] {task_command.py:426} INFO - Running <TaskInstance: car_price_prediction.predict manual__2024-08-05T13:02:34.024518+00:00 [running]> on host db70dacab446
+[2024-08-05T13:06:10.026+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='car_price_prediction' AIRFLOW_CTX_TASK_ID='predict' AIRFLOW_CTX_EXECUTION_DATE='2024-08-05T13:02:34.024518+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-08-05T13:02:34.024518+00:00'
+[2024-08-05T13:06:10.032+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-05T13:06:10.104+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-05T13:06:10.105+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/modules/predict.py", line 54, in predict
+    with open(path+files) as f:
+              ~~~~^~~~~~
+TypeError: can only concatenate str (not "list") to str
+[2024-08-05T13:06:10.176+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=car_price_prediction, task_id=predict, run_id=manual__2024-08-05T13:02:34.024518+00:00, execution_date=20240805T130234, start_date=20240805T130609, end_date=20240805T130610
+[2024-08-05T13:06:10.236+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 192 for task predict (can only concatenate str (not "list") to str; 1790)
+[2024-08-05T13:06:10.282+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-05T13:06:10.315+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-05T13:06:10.336+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,41 @@
+[2024-08-05T13:18:40.861+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-08-05T13:18:41.073+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: car_price_prediction.predict scheduled__2022-07-31T15:00:00+00:00 [queued]>
+[2024-08-05T13:18:41.137+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: car_price_prediction.predict scheduled__2022-07-31T15:00:00+00:00 [queued]>
+[2024-08-05T13:18:41.143+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-08-05T13:18:42.410+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): predict> on 2022-07-31 15:00:00+00:00
+[2024-08-05T13:18:42.469+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62: DeprecationWarning: This process (pid=75) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-08-05T13:18:42.472+0000] {standard_task_runner.py:64} INFO - Started process 296 to run task
+[2024-08-05T13:18:42.510+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'car_price_prediction', 'predict', 'scheduled__2022-07-31T15:00:00+00:00', '--job-id', '208', '--raw', '--subdir', 'DAGS_FOLDER/hw_dag.py', '--cfg-path', '/tmp/tmpugv840c2']
+[2024-08-05T13:18:42.543+0000] {standard_task_runner.py:91} INFO - Job 208: Subtask predict
+[2024-08-05T13:18:42.780+0000] {task_command.py:426} INFO - Running <TaskInstance: car_price_prediction.predict scheduled__2022-07-31T15:00:00+00:00 [running]> on host db70dacab446
+[2024-08-05T13:18:43.105+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='car_price_prediction' AIRFLOW_CTX_TASK_ID='predict' AIRFLOW_CTX_EXECUTION_DATE='2022-07-31T15:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2022-07-31T15:00:00+00:00'
+[2024-08-05T13:18:43.111+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-08-05T13:18:43.171+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-08-05T13:18:43.177+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/modules/predict.py", line 55, in predict
+    with open(path+files) as f:
+              ~~~~^~~~~~
+TypeError: can only concatenate str (not "list") to str
+[2024-08-05T13:18:43.253+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=car_price_prediction, task_id=predict, run_id=scheduled__2022-07-31T15:00:00+00:00, execution_date=20220731T150000, start_date=20240805T131841, end_date=20240805T131843
+[2024-08-05T13:18:43.292+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 208 for task predict (can only concatenate str (not "list") to str; 296)
+[2024-08-05T13:18:43.339+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2024-08-05T13:18:43.396+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-08-05T13:18:43.409+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
